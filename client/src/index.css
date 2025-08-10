@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    /* Light mode default */
+    @apply bg-parchment text-ink font-serif;
+    /* Dark mode override */
+    @apply dark:bg-dark-bg dark:text-dark-ink;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    /* Light mode default */
+    @apply font-display text-wood;
+    /* Dark mode override */
+    @apply dark:text-dark-gold;
+  }
+}

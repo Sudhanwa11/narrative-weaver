@@ -13,20 +13,17 @@ import SummaryPage from './pages/SummaryPage';
 import ProfilePage from './pages/ProfilePage';
 
 function App() {
-  // Get the current theme mode ('light' or 'dark') from the Redux store
   const { mode } = useSelector((state) => state.theme);
 
-  // This effect hook runs whenever the 'mode' variable changes.
-  // It's responsible for applying the dark mode class to the entire application.
   useEffect(() => {
-    const root = window.document.documentElement;
-
+    const root = window.document.documentElement; 
     if (mode === 'dark') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-  }, [mode]); // The dependency array ensures this effect only runs when 'mode' changes
+  }, [mode]); 
+
 
   return (
     <Router>

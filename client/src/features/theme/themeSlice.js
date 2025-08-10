@@ -1,8 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Get initial theme from localStorage or system preference
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) return savedTheme;
+
+  // Detect system preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return prefersDark ? 'dark' : 'light';
+};
+
 const initialState = {
-  // Check localStorage for a saved theme, otherwise default to 'light'
-  mode: localStorage.getItem('theme') || 'light',
+  mode: getInitialTheme(),
 };
 
 export const themeSlice = createSlice({
@@ -11,11 +20,14 @@ export const themeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state.mode = state.mode === 'light' ? 'dark' : 'light';
-      // Save the new theme preference to localStorage
       localStorage.setItem('theme', state.mode);
     },
+    setTheme: (state, action) => {
+      state.mode = action.payload;
+      localStorage.setItem('theme', state.mode);
+    }
   },
 });
 
-export const { toggleTheme } = themeSlice.actions;
+export const { toggleTheme, setTheme } = themeSlice.actions;
 export default themeSlice.reducer;

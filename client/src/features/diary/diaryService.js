@@ -38,11 +38,23 @@ const deleteEntry = async (entryId, token) => {
   return response.data;
 };
 
+const updateEntry = async (entryData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(API_URL + entryData._id, entryData, config);
+  return response.data;
+};
+
 
 const diaryService = {
   createEntry,
   getEntries,
   deleteEntry,
+  updateEntry,
 };
 
 export default diaryService;

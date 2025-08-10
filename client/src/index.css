@@ -19,3 +19,28 @@
     @apply dark:text-dark-gold;
   }
 }
+
+/* Custom Styles for React Calendar */
+.react-calendar {
+  @apply bg-white/50 dark:bg-dark-wood/20 border border-wood dark:border-dark-gold rounded-lg p-2;
+}
+
+/* Style for the navigation buttons (arrows, month) */
+.react-calendar__navigation button {
+  @apply font-bold hover:bg-gold/20 dark:hover:bg-dark-gold/20 rounded-md;
+}
+
+/* Style for the individual date tiles */
+.react-calendar__tile {
+  @apply rounded-md hover:bg-gold/20 dark:hover:bg-dark-gold/20;
+}
+
+/* Style for the selected date */
+.react-calendar__tile--active {
+  @apply bg-wood dark:bg-dark-gold text-white dark:text-ink;
+}
+
+/* Style for today's date */
+.react-calendar__tile--now {
+  @apply bg-gold/30 dark:bg-dark-gold/30 font-bold;
+}

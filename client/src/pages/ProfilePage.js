@@ -59,7 +59,7 @@ function ProfilePage() {
                   onChange={handleDarkModeToggle}
                 />
                 <div className="block bg-gray-300 w-14 h-8 rounded-full dark:bg-gray-600"></div>
-                <div className={`dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform ${isDarkMode ? 'transform translate-x-6 bg-dark-gold' : ''}`}></div>
+                <div className={`dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform ${isDarkMode ? 'translate-x-6 bg-dark-gold' : ''}`}></div>
               </div>
             </label>
           </div>

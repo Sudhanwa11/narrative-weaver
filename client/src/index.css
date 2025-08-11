@@ -6,41 +6,56 @@
 
 @layer base {
   body {
-    /* Light mode default */
-    @apply bg-parchment text-ink font-serif;
-    /* Dark mode override */
-    @apply dark:bg-dark-bg dark:text-dark-ink;
+    @apply bg-parchment text-ink font-serif dark:bg-dark-bg dark:text-dark-ink;
   }
-
   h1, h2, h3, h4, h5, h6 {
-    /* Light mode default */
-    @apply font-display text-wood;
-    /* Dark mode override */
-    @apply dark:text-dark-gold;
+    @apply font-display text-wood dark:text-dark-gold;
   }
 }
 
-/* Custom Styles for React Calendar */
+/* --- Custom Styles for React Calendar --- */
 .react-calendar {
   @apply bg-white/50 dark:bg-dark-wood/20 border border-wood dark:border-dark-gold rounded-lg p-2;
 }
-
-/* Style for the navigation buttons (arrows, month) */
 .react-calendar__navigation button {
   @apply font-bold hover:bg-gold/20 dark:hover:bg-dark-gold/20 rounded-md;
 }
-
-/* Style for the individual date tiles */
 .react-calendar__tile {
   @apply rounded-md hover:bg-gold/20 dark:hover:bg-dark-gold/20;
 }
 
-/* Style for the selected date */
+/* Light theme filled circle highlight */
+.react-calendar__tile.has-entry {
+  background-color: #DAA520; /* gold fill */
+  color: white; /* date number visible */
+  border-radius: 50%;
+  padding: 0.25rem;
+}
+
+/* Dark theme filled circle highlight */
+.dark .react-calendar__tile.has-entry {
+  background-color: #b8860b; /* dark gold fill */
+  color: #1a1a1a; /* readable on gold */
+}
+
+/* Light mode hover override - higher specificity */
+.react-calendar__tile.has-entry:enabled:hover,
+.react-calendar__tile.has-entry:enabled:focus {
+  background-color: #e6b800 !important; /* slightly brighter gold */
+  color: white !important;
+}
+
+/* Dark mode hover override - higher specificity */
+.dark .react-calendar__tile.has-entry:enabled:hover,
+.dark .react-calendar__tile.has-entry:enabled:focus {
+  background-color: #d4a017 !important; /* lighter dark gold */
+  color: #1a1a1a !important;
+}
+
+
 .react-calendar__tile--active {
   @apply bg-wood dark:bg-dark-gold text-white dark:text-ink;
 }
-
-/* Style for today's date */
 .react-calendar__tile--now {
   @apply bg-gold/30 dark:bg-dark-gold/30 font-bold;
 }

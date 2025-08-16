@@ -4,7 +4,10 @@ import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
+// Route for the initial, personalized summary
 router.get('/summary', protect, generateSummary);
-router.get('/deeper-analysis', protect, generateDeeperAnalysis); // Add this new route
+
+// Route for the "Go Deeper" psychoanalytic analysis
+router.get('/deeper-analysis', protect, generateDeeperAnalysis);
 
 export default router;

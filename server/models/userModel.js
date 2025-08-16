@@ -13,14 +13,31 @@ const userSchema = mongoose.Schema(
       unique: true,
       match: [/.+\@.+\..+/, 'Please fill a valid email address'],
     },
-    phone: {
-      type: String,
-      // You might want to add a regex for phone number validation
-    },
     password: {
       type: String,
       required: [true, 'Please add a password'],
     },
+    // --- NEW FIELDS ---
+    phone: {
+      type: String,
+      default: '', // Set a default value
+    },
+    dateOfBirth: {
+      type: Date,
+    },
+    gender: {
+      type: String,
+      default: '', // Set a default value
+    },
+    ethnicity: {
+      type: String,
+      default: '', // Set a default value
+    },
+    address: {
+      type: String,
+      default: '', // Set a default value
+    },
+    // --- END OF NEW FIELDS ---
   },
   {
     timestamps: true, // Adds createdAt and updatedAt timestamps

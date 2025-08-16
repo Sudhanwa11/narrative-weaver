@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
-import logo from '../assets/applogo.png'
+import logo from '../assets/applogo.png';
 
 function Header() {
   const navigate = useNavigate();
@@ -15,34 +15,71 @@ function Header() {
     navigate('/login');
   };
 
-  return (
-    <header className="bg-wood text-parchment p-4 shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to={user ? "/diary" : "/"} className="flex items-center gap-3">
-          <img src={logo} alt="The Narrative Weaver Logo" className="h-10 w-10 rounded-full object-cover mr-2" />
+  // links to render
+  const links = user
+    ? [
+        { to: '/', label: 'Home' },
+        { to: '/journal', label: 'Journal' },
+        { to: '/diary', label: 'New Entry' },
+        { to: '/summaries', label: 'Summaries' },
+        { to: '/profile', label: 'Profile' },
+      ]
+    : [
+        { to: '/login', label: 'Login' },
+        { to: '/register', label: 'Register' },
+      ];
 
-          {/* Application Title */}
-          <h1 className="text-2xl md:text-3xl font-display text-white">
-            The Narrative Weaver
-          </h1>
-        </Link>
-        <nav className="flex items-center space-x-4 md:space-x-6">
-          {user ? (
-            <>
-              <Link to="/journal" className="hover:text-gold transition-colors">Journal</Link>
-              <Link to="/diary" className="hover:text-gold transition-colors">Diary</Link>
-              <Link to="/summaries" className="hover:text-gold transition-colors">Summaries</Link>
-              <Link to="/profile" className="hover:text-gold transition-colors">Profile</Link>
-              <button onClick={onLogout} className="bg-gold text-ink font-bold py-2 px-4 rounded hover:bg-opacity-80 transition-colors">
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" className="hover:text-gold transition-colors">Login</Link>
-              <Link to="/register" className="hover:text-gold transition-colors">Register</Link>
-            </>
-          )}
+  return (
+    <header className="bg-wood text-parchment shadow-lg sticky top-0 z-50">
+      <div className="max-w-screen-xl mx-auto px-4">
+        {/* Top Row: Centered Logo and Title */}
+        <div className="flex justify-center items-center py-4">
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="The Narrative Weaver Logo"
+              className="h-12 w-12 rounded-full object-cover"
+            />
+            <h1 className="text-2xl md:text-3xl font-display text-white">
+              The Narrative Weaver
+            </h1>
+          </Link>
+        </div>
+
+        {/* Divider line between title and nav */}
+        <div className="w-full">
+          {/* thin gold line — visible on wood background */}
+          <div className="h-1 md:h-1 bg-gold/90 shadow-sm" />
+        </div>
+
+        {/* Bottom Row: Navigation stretched across full width */}
+        <nav aria-label="Primary" className="w-full">
+          <ul className="flex w-full items-center">
+            {links.map((link) => (
+              <li key={link.label} className="flex-1 text-center">
+                <Link
+                  to={link.to}
+                  className="inline-block w-full py-3 hover:text-gold transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+
+            {/* Logout occupies the final slot */}
+            <li className="flex-1 text-center">
+              {user ? (
+                <button
+                  onClick={onLogout}
+                  className="inline-block w-4/5 py-2 px-3 rounded-md bg-gold text-ink font-semibold hover:opacity-90 transition"
+                >
+                  Logout
+                </button>
+              ) : (
+                <span className="inline-block w-full py-3" />
+              )}
+            </li>
+          </ul>
         </nav>
       </div>
     </header>

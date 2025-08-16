@@ -59,3 +59,36 @@
 .react-calendar__tile--now {
   @apply bg-gold/30 dark:bg-dark-gold/30 font-bold;
 }
+
+/* --- FINAL Animated Diary Visual --- */
+@keyframes open-book {
+  from { transform: rotateX(80deg) scale(0.8); opacity: 0; }
+  to { transform: rotateX(0deg) scale(1); opacity: 1; }
+}
+
+.animated-book {
+  animation: open-book 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Animation to "draw" the SVG text */
+@keyframes draw-text {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* NEW & IMPROVED Animation for the quill to follow the writing path */
+@keyframes move-quill-final {
+  0% { transform: translate(-20px, 45px) rotate(-15deg); }
+  10% { transform: translate(10px, 55px) rotate(5deg); }
+  20% { transform: translate(40px, 45px) rotate(-10deg); }
+  30% { transform: translate(70px, 55px) rotate(8deg); }
+  40% { transform: translate(100px, 45px) rotate(-5deg); }
+  50% { transform: translate(130px, 55px) rotate(10deg); }
+  60% { transform: translate(160px, 45px) rotate(-12deg); }
+  70% { transform: translate(190px, 55px) rotate(7deg); }
+  80% { transform: translate(220px, 45px) rotate(-8deg); }
+  100% { transform: translate(220px, 45px) rotate(-8deg); } /* Pen rests at the end */
+}

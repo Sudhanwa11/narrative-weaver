@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import diaryEntryRoutes from './routes/diaryEntryRoutes.js';
 import aiRoutes from './routes/aiRoutes.js'; // Import AI routes
+import exportRoutes from './routes/exportRoutes.js'
 
 // Load environment variables
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/users', userRoutes);
 app.use('/api/diary', diaryEntryRoutes);
 app.use('/api/ai', aiRoutes); // Use AI routes
+app.use('/api/export', exportRoutes);
 
 // Simple test route
 app.get('/', (req, res) => {
